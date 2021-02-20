@@ -1,0 +1,1 @@
+while :; do chattr -ia king.txt; echo USER > king.txt; chattr +ia king.txt; done
