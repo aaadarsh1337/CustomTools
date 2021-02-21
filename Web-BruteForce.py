@@ -20,7 +20,7 @@ headers = {
     'Referer': 'http://grabme.herokuapp.com/target/',
     'Accept-Language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,mr;q=0.6,pt;q=0.5',
 }
-
+        
 # Usernames In A List Format
 users = [ x.strip() for x in open('users.txt').read().split('\n') if x ]
 # Passwords In A List Format
