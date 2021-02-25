@@ -1,1 +1,11 @@
+# Command(Linux)
+
 while :; do chattr -ia king.txt; echo USER > king.txt; chattr +ia king.txt; done
+
+# Python(Make A Python File With The Following Content And Run It. )
+
+import os
+while True:
+    os.system('chattr -ia king.txt')
+    os.system('echo USER > king.txt')
+    os.system('chattr +ia king.txt')
