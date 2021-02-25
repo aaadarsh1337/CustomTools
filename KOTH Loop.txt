@@ -2,7 +2,7 @@
 
 while :; do chattr -ia king.txt; echo USER > king.txt; chattr +ia king.txt; done
 
-# Python(Make A Python File With The Following Content And Run It. )
+# Python(Make A Python File With The Following Content And Run It.)
 
 import os
 while True:
