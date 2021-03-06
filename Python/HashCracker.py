@@ -78,4 +78,5 @@ if flag == 0:
     print("Tip1: Try Changing The Wordlist")
     print("Tip2: Check If The Hash_Number Is Correct")
     print("Tip3: Check If The Hash Is Case Sensitive")
+    input()
     quit()
