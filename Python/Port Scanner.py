@@ -37,7 +37,7 @@ def scan_port(port):
     s.settimeout(3)
     conn = s.connect_ex((Fixed_Target, port))
     if (not conn):
-        print("\n[+] Port {} Is Open".format(port))
+        print("[+] Port {} Is Open".format(port))
     s.close()
 
 for port in range(Start_Port, End_Port+1):
