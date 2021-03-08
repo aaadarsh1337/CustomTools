@@ -47,3 +47,4 @@ for port in range(Start_Port, End_Port+1):
 End_Time = time.time()
 print()
 print("Scan Completed In:", End_Time - Start_Time, "Seconds")
+time.sleep(3)
