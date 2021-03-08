@@ -13,6 +13,14 @@ End_Port = int(input("Enter End Port: "))
 
 print()
 
+if End_Port >= 65535+1:
+    print("[-] Invalid Ports")
+    sys.exit()
+
+elif Start_Port >= 65535+1:
+    print("[-] Invalid Ports")
+    sys.exit()
+
 Start_Time = time.time()
 
 try:
@@ -29,7 +37,7 @@ def scan_port(port):
     s.settimeout(3)
     conn = s.connect_ex((Fixed_Target, port))
     if (not conn):
-        print("[+] Port {} Is Open".format(port))
+        print("\n[+] Port {} Is Open".format(port))
     s.close()
 
 for port in range(Start_Port, End_Port+1):
@@ -39,4 +47,3 @@ for port in range(Start_Port, End_Port+1):
 End_Time = time.time()
 print()
 print("Scan Completed In:", End_Time - Start_Time, "Seconds")
-input()
