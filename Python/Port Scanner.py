@@ -26,7 +26,7 @@ Start_Time = time.time()
 try:
     Fixed_Target = socket.gethostbyname(Raw_Target)
 except socket.gaierror:
-    print("Could Not Resolve Host")
+    print("[-] Could Not Resolve Host")
     sys.exit()
 
 print('[*] Starting TCP Port Scan On', Fixed_Target)
