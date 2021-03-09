@@ -29,12 +29,12 @@ except socket.gaierror:
     print("Could Not Resolve Host")
     sys.exit()
 
-print('[*] Starting TCP Port Scan On', Raw_Target)
+print('[*] Starting TCP Port Scan On', Fixed_Target)
 print()
 
 def scan_port(port):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.settimeout(3)
+    s.settimeout(5)
     conn = s.connect_ex((Fixed_Target, port))
     if (not conn):
         print("[+] Port {} Is Open".format(port))
