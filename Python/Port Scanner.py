@@ -29,7 +29,7 @@ except socket.gaierror:
     print("Could Not Resolve Host")
     sys.exit()
 
-print('[*] Starting Port Scan On', Raw_Target)
+print('[*] Starting TCP Port Scan On', Raw_Target)
 print()
 
 def scan_port(port):
