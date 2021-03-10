@@ -15,11 +15,11 @@ End_Port = int(input("[*] Enter End Port: "))
 
 print()
 
-if End_Port >= 65535+1:
+if End_Port > 65535:
     print("[-] Invalid Ports")
     sys.exit()
 
-elif Start_Port >= 65535+1:
+elif Start_Port > 65535:
     print("[-] Invalid Ports")
     sys.exit()
 
