@@ -48,7 +48,7 @@ for port in range(Start_Port, End_Port+1):
     thread = threading.Thread(target = scan_port, args = (port,))
     thread.start()
 
-time.sleep(3)
+time.sleep(1)
 
 if Open == 0:
 	print("[-] No Open Ports Found In Range")
