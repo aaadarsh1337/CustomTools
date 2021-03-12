@@ -28,7 +28,7 @@ Start_Time = time.time()
 try:
     Fixed_Target = socket.gethostbyname(Raw_Target)
 except socket.gaierror:
-    print("[-] Could Not Resolve Host")
+    print("[-] Host Could Not Be Resolved")
     sys.exit()
 
 print('[*] Starting TCP Port Scan On', Fixed_Target)
@@ -36,7 +36,7 @@ print()
 
 def scan_port(port):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.settimeout(3)
+    s.settimeout(0.5)
     conn = s.connect_ex((Fixed_Target, port))
     if (not conn):
         print("[+] Port {}/tcp Is Open".format(port))
@@ -47,7 +47,7 @@ def scan_port(port):
 for port in range(Start_Port, End_Port+1):
     thread = threading.Thread(target = scan_port, args = (port,))
     thread.start()
-
+    
 time.sleep(1)
 
 if Open == 0:
@@ -55,5 +55,5 @@ if Open == 0:
 
 End_Time = time.time()
 print()
-print("[*] Scan Completed In:", End_Time - Start_Time, "Seconds")
+print("Scan Completed In:", End_Time - Start_Time, "Seconds")
 time.sleep(3)
