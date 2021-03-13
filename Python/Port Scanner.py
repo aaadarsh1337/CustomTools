@@ -57,6 +57,7 @@ try:
 except KeyboardInterrupt:
     print()
     print("[-] Aborted")
+    sys.exit()
     
 time.sleep(1)
 
