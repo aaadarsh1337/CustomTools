@@ -2,14 +2,12 @@ import socket
 import time
 import threading
 import sys
-import pyfiglet
 
 Open = 0
 
-print("-"*60)
-print()
-print(pyfiglet.figlet_format("Python Port Scanner"))
-print("-"*60)
+print("-"*20)
+print("Python Port Scanner")
+print("-"*20)
 
 Raw_Target = input("[*] Enter Target IP Or Host: ")
 Start_Port = int(input("[*] Enter Start Port: "))
