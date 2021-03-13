@@ -9,10 +9,15 @@ print("-"*20)
 print("Python Port Scanner")
 print("-"*20)
 
-Raw_Target = input("[*] Enter Target IP Or Host: ")
-Start_Port = int(input("[*] Enter Start Port: "))
-End_Port = int(input("[*] Enter End Port: "))
-
+try:
+    Raw_Target = input("[*] Enter Target IP Or Host: ")
+    Start_Port = int(input("[*] Enter Start Port: "))
+    End_Port = int(input("[*] Enter End Port: "))
+except KeyboardInterrupt:
+    print()
+    print()
+    print("[-] Aborted")
+    sys.exit()
 print()
 
 if End_Port > 65535:
