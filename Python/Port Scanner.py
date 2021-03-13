@@ -2,30 +2,33 @@ import socket
 import time
 import threading
 import sys
+from termcolor import colored
+
+# Be Sure To Pip Install Termcolor
 
 Open = 0
 
-print("-"*20)
-print("Python Port Scanner")
-print("-"*20)
+print(colored("-"*20, 'yellow'))
+print(colored("Python Port Scanner", 'green'))
+print(colored("-"*20, 'yellow'))
 
 try:
-    Raw_Target = input("[*] Enter Target IP Or Host: ")
-    Start_Port = int(input("[*] Enter Start Port: "))
-    End_Port = int(input("[*] Enter End Port: "))
+    Raw_Target = input(colored("[*] Enter Target IP Or Host: ", 'white'))
+    Start_Port = int(input(colored("[*] Enter Start Port: ", 'white')))
+    End_Port = int(input(colored("[*] Enter End Port: ", 'white')))
 except KeyboardInterrupt:
     print()
     print()
-    print("[-] Aborted")
+    print(colored("[-] Aborted", 'red'))
     sys.exit()
 print()
 
 if End_Port > 65535:
-    print("[-] Invalid Ports")
+    print(colored("[-] Invalid Ports", 'red'))
     sys.exit()
 
 elif Start_Port > 65535:
-    print("[-] Invalid Ports")
+    print(colored("[-] Invalid Ports", 'red'))
     sys.exit()
 
 Start_Time = time.time()
@@ -33,7 +36,7 @@ Start_Time = time.time()
 try:
     Fixed_Target = socket.gethostbyname(Raw_Target)
 except socket.gaierror:
-    print("[-] Host Could Not Be Resolved")
+    print(colored("[-] Host Could Not Be Resolved", 'red'))
     sys.exit()
 
 print('[*] Starting TCP Port Scan On', Fixed_Target)
@@ -44,7 +47,7 @@ def scan_port(port):
     s.settimeout(0.5)
     conn = s.connect_ex((Fixed_Target, port))
     if (not conn):
-        print("[+] Port {}/tcp Is Open".format(port))
+        print(colored("[+] Port {}/tcp Is Open".format(port), 'green'))
         global Open
         Open = 1
     s.close()
@@ -56,13 +59,13 @@ try:
 
 except KeyboardInterrupt:
     print()
-    print("[-] Aborted")
+    print(colored("[-] Aborted", 'red'))
     sys.exit()
     
 time.sleep(1)
 
 if Open == 0:
-	print("[-] No Open Ports Found In Range")
+	print(colored("[-] No Open Ports Found In Range", 'red'))
 
 End_Time = time.time()
 print()
