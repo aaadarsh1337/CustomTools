@@ -62,7 +62,7 @@ except KeyboardInterrupt:
     print(colored("[-] Aborted", 'red'))
     sys.exit()
     
-time.sleep(1)
+time.sleep(3)
 
 if Open == 0:
 	print(colored("[-] No Open Ports Found In Range", 'red'))
