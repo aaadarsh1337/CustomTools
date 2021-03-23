@@ -2,42 +2,42 @@ import socket
 import time
 import threading
 import sys
-from termcolor import colored
+from colorama import Fore, Back, Style
 
-# Be Sure To Pip Install Termcolor
+# Be Sure To Pip Install 'colorama'
 
 Open = 0
 
 # A Good Looking Banner :)
 
-print(colored("-"*20, 'yellow'))
-print(colored("Python Port Scanner", 'green'))
-print(colored("-"*20, 'yellow'))
+print(Fore.YELLOW + "-"*20)
+print(Fore.GREEN + "Python Port Scanner")
+print(Fore.YELLOW + "-"*20)
 
 # Try To Get Input
 
 try:
-    Raw_Target = input(colored("[*] Enter Target IP Or Host: ", 'white'))
-    Start_Port = int(input(colored("[*] Enter Start Port: ", 'white')))
-    End_Port = int(input(colored("[*] Enter End Port: ", 'white')))
+    Raw_Target = input(Fore.WHITE + "[*] Enter Target IP Or Host: ")
+    Start_Port = int(input(Fore.WHITE + "[*] Enter Start Port: "))
+    End_Port = int(input(Fore.WHITE + "[*] Enter End Port: "))
 
 # If There Is A Keyboard Interrupt
 
 except KeyboardInterrupt:
     print()
     print()
-    print(colored("[-] Aborted", 'red'))
+    print(Fore.RED + "[-] Aborted" + Style.RESET_ALL)
     sys.exit()
 print()
 
 # Checking If The Ports Are Less Than Or Equal To 65535(Total TCP Ports)
 
 if End_Port > 65535:
-    print(colored("[-] Invalid Ports", 'red'))
+    print(Fore.RED + "[-] Invalid Ports" + Style.RESET_ALL)
     sys.exit()
 
 elif Start_Port > 65535:
-    print(colored("[-] Invalid Ports", 'red'))
+    print(Fore.RED + "[-] Invalid Ports" + Style.RESET_ALL)
     sys.exit()
 
 # Starting Time For Printing Scan Time
@@ -49,7 +49,7 @@ Start_Time = time.time()
 try:
     Fixed_Target = socket.gethostbyname(Raw_Target)
 except socket.gaierror:
-    print(colored("[-] Host Could Not Be Resolved", 'red'))
+    print(Fore.RED + "[-] Could Not Resolve Host" + Style.RESET_ALL)
     sys.exit()
 
 # One More Banner :)
@@ -69,7 +69,7 @@ def scan_port(port):
     # Defining If Statement To Check If It Responded Or Not
     if (not conn):
         # Banner Again :)
-        print(colored("[+] Port {}/tcp Is Open".format(port), 'green'))
+        print(Fore.GREEN + "[+] Port {}/tcp Is Open".format(port) + Style.RESET_ALL)
         # Defined Open Because If There Are No Ports Open, It Wont Print Anything
         global Open
         Open = 1
@@ -89,7 +89,7 @@ try:
 
 except KeyboardInterrupt:
     print()
-    print(colored("[-] Aborted", 'red'))
+    print(Fore.RED + "[-] Aborted" + Style.RESET_ALL)
     sys.exit()
 
 # Timeout For Name Sake :)
@@ -99,10 +99,9 @@ time.sleep(1)
 # If No Ports Are Open
 
 if Open == 0:
-	print(colored("[-] No Open Ports Found In Range", 'red'))
+	print(Fore.RED + "[-] No Open Ports Found In Range" + Style.RESET_ALL)
 
 # Getting Scan Time
-
 End_Time = time.time()
 print()
 print("Scan Completed In:", End_Time - Start_Time, "Seconds")
