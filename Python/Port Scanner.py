@@ -65,9 +65,10 @@ def scan_port(port):
     # Setting Timeout Because Of Lag Sometime :(
     s.settimeout(0.5)
     # Trying To Connect To Target
-    conn = s.connect_ex((Fixed_Target, port))
+    # Is Status Is 0, We Get To Know That Connection Was Successful
+    status = s.connect_ex((Fixed_Target, port))
     # Defining If Statement To Check If It Responded Or Not
-    if (not conn):
+    if status == 0:
         # Banner Again :)
         print(Fore.GREEN + "[+] Port {}/tcp Is Open".format(port) + Style.RESET_ALL)
         # Defined Open Because If There Are No Ports Open, It Wont Print Anything
