@@ -18,8 +18,8 @@ print(Fore.YELLOW + "-"*20)
 
 try:
     Raw_Target = input(Fore.WHITE + "[*] Enter Target IP Or Host: ")
-    Start_Port = int(input(Fore.WHITE + "[*] Enter Start Port: "))
-    End_Port = int(input(Fore.WHITE + "[*] Enter End Port: "))
+    Start_Port = input(Fore.WHITE + "[*] Enter Start Port: ")
+    End_Port = input(Fore.WHITE + "[*] Enter End Port: ")
 
 # If There Is A Keyboard Interrupt
 
@@ -31,12 +31,19 @@ except KeyboardInterrupt:
 print()
 
 # Checking If The Ports Are Less Than Or Equal To 65535(Total TCP Ports)
-
-if End_Port > 65535:
+    
+try:
+	Start = int(Start_Port)
+	End = int(End_Port)
+except ValueError:
+	print(Fore.RED + "[-] Invalid Ports" + Style.RESET_ALL)
+	sys.exit()
+	
+if End > 65535:
     print(Fore.RED + "[-] Invalid Ports" + Style.RESET_ALL)
     sys.exit()
 
-elif Start_Port > 65535:
+elif Start > 65535:
     print(Fore.RED + "[-] Invalid Ports" + Style.RESET_ALL)
     sys.exit()
 
@@ -80,7 +87,7 @@ def scan_port(port):
 # Using Threading Because Only The For Statement Will Take Forever:(
 
 try:
-    for port in range(Start_Port, End_Port+1):
+    for port in range(Start, End+1):
         # Defining Thread
         thread = threading.Thread(target = scan_port, args = (port,))
         # Starting Thread
