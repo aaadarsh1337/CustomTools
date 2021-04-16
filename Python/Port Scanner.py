@@ -18,9 +18,9 @@ print()
 # Try To Get Input
 
 try:
-    Raw_Target = input(Fore.WHITE + '==>' + " Enter Target IP Or Host: " )
-    Raw_Start_Port = input(Fore.WHITE + '==>' + " Enter Start Port: ")
-    Raw_End_Port = input(Fore.WHITE + '==>' + " Enter End Port: ")
+    Raw_Target = input(Fore.BLUE + '[*]' + " Enter Target IP Or Host: " )
+    Raw_Start_Port = input(Fore.BLUE + '[*]' + " Enter Start Port: ")
+    Raw_End_Port = input(Fore.BLUE + '[*]' + " Enter End Port: ")
 
 # If There Is A Keyboard Interrupt
 
@@ -63,7 +63,7 @@ except socket.gaierror:
 
 # One More Banner :)
 
-print('[*] Starting TCP Port Scan On', Fixed_Target)
+print(Fore.CYAN + '[+] Starting TCP Port Scan On', Fixed_Target + Style.RESET_ALL)
 print()
 
 # Defining Scan Port Function
@@ -114,7 +114,7 @@ if Open == 0:
 # Getting Scan Time
 End_Time = time.time()
 print()
-print("Scan Completed In:", End_Time - Start_Time, "Seconds")
+print(Fore.LIGHTWHITE_EX + "Scan Completed In:", End_Time - Start_Time, "Seconds")
 time.sleep(3)
 
 # Happy Hacking :)
