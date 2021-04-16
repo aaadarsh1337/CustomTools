@@ -12,16 +12,15 @@ Open = 0
 
 # A Good Looking Banner :)
 
-print(Fore.YELLOW + "-"*20)
-print(Fore.GREEN + "Python Port Scanner")
-print(Fore.YELLOW + "-"*20)
+print(Fore.CYAN + "Welcome To Python Port Scanner!" + Style.RESET_ALL)
+print()
 
 # Try To Get Input
 
 try:
-    Raw_Target = input(Fore.WHITE + "[*] Enter Target IP Or Host: ")
-    Start_Port = int(input(Fore.WHITE + "[*] Enter Start Port: "))
-    End_Port = int(input(Fore.WHITE + "[*] Enter End Port: "))
+    Raw_Target = input(Fore.WHITE + '==>' + " Enter Target IP Or Host: " )
+    Raw_Start_Port = input(Fore.WHITE + '==>' + " Enter Start Port: ")
+    Raw_End_Port = input(Fore.WHITE + '==>' + " Enter End Port: ")
 
 # If There Is A Keyboard Interrupt
 
@@ -31,6 +30,14 @@ except KeyboardInterrupt:
     print(Fore.RED + "[-] Aborted" + Style.RESET_ALL)
     sys.exit()
 print()
+
+try:
+    Start_Port = int(Raw_Start_Port)
+    End_Port = int(Raw_End_Port)
+
+except ValueError:
+    print(Fore.RED + "[-] Invalid Ports" + Style.RESET_ALL)
+    sys.exit()
 
 # Checking If The Ports Are Less Than Or Equal To 65535(Total TCP Ports)
 
