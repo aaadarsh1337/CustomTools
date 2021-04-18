@@ -41,7 +41,9 @@ except KeyboardInterrupt:
 
 try:
     if 'ip' in Value:
-        print("[+] Target: " + Value['ip'])
+        print("[+] Target: " + Value['ip'] + "(" + Value['version'] + ")")
+    if 'reason' in Value:
+        print("[+] Message: " + Value['reason'])
     if 'continent_code' in Value:
         print("[+] Continent: " + Value['continent_code'])
     if 'country_name' and 'country_code' in Value:
