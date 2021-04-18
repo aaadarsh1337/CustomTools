@@ -1,4 +1,4 @@
-pimport urllib.request
+import urllib.request
 import json
 import socket
 import sys
