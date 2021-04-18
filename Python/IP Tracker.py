@@ -1,4 +1,4 @@
-import urllib.request
+pimport urllib.request
 import json
 import socket
 import sys
@@ -41,7 +41,7 @@ except KeyboardInterrupt:
 try:
     if 'query' in Value:
         print("[+] Target: " + Value['query'])
-    if 'message' in Value and ():
+    if 'message' in Value:
         print("[+] Message: " + Value['message'])
     if 'continent' and 'continentCode' in Value:
         print("[+] Continent: " + Value['continent'] + "(" + Value['continentCode'] + ")")
