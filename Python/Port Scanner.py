@@ -67,28 +67,22 @@ print()
 # Defining Scan Port Function
 
 def scan_port(port):
-    try:
-    	# AF_INET And SOCK_STREAM Work For TCP
-    	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    	# Setting Timeout Because Of Lag Sometimes :(
-    	s.settimeout(0.5)
-    	# Trying To Connect To Target
-    	# If Status Is 0, It Means That The Port Is Open
-    	status = s.connect_ex((Fixed_Target, port))
-    	# Defining If Statement To Check If It Responded Or Not
-    	if status == 0:
-        	# Banner Again :)
-        	print(colored("[+] Port {}/tcp Is Open".format(port), 'green'))
-        	# Defined Open Because If There Are No Ports Open, It Wont Print Anything
-        	global Open
-        	Open = 1
+    # AF_INET And SOCK_STREAM Work For TCP
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    # Setting Timeout Because Of Lag Sometime :(
+    s.settimeout(0.5)
+    # Trying To Connect To Target
+    # If Status Is 0, It Means That The Port Is Open
+    status = s.connect_ex((Fixed_Target, port))
+    # Defining If Statement To Check If It Responded Or Not
+    if status == 0:
+        # Banner Again :)
+        print(colored("[+] Port {}/tcp Is Open".format(port), 'green'))
+        # Defined Open Because If There Are No Ports Open, It Wont Print Anything
+        global Open
+        Open = 1
     # Closing Connection
-	s.close()
-
-    except KeyboardInterrupt:
-	 print()
-    	 print(colored("[-] Aborted", 'red'))
-   	 sys.exit()
+    s.close()
 
 # Using Threading Because Only The For Statement Will Take Forever:(
 
