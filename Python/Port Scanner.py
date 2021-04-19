@@ -2,32 +2,30 @@ import socket
 import time
 import threading
 import sys
-from colorama import init, Fore, Back, Style
+from termcolor import colored
 
-init(convert=True)
-
-# Be Sure To Pip Install 'colorama'
+# Be Sure To Pip Install 'termcolor'
 
 Open = 0
 
 # A Good Looking Banner :)
 
-print(Fore.CYAN + "Welcome To Python Port Scanner!" + Style.RESET_ALL)
+print(colored("Welcome To Python Port Scanner!", 'cyan', attrs=['bold']))
 print()
 
 # Try To Get Input
 
 try:
-    Raw_Target = input(Fore.BLUE + '[*]' + " Enter Target IP Or Host: " )
-    Raw_Start_Port = input(Fore.BLUE + '[*]' + " Enter Start Port: ")
-    Raw_End_Port = input(Fore.BLUE + '[*]' + " Enter End Port: ")
+    Raw_Target = input(colored('[*]' + " Enter Target IP Or Host: ", 'cyan' ))
+    Raw_Start_Port = input(colored('[*]' + " Enter Start Port: ", 'cyan'))
+    Raw_End_Port = input(colored('[*]' + " Enter End Port: ", 'cyan'))
 
 # If There Is A Keyboard Interrupt
 
 except KeyboardInterrupt:
     print()
     print()
-    print(Fore.RED + "[-] Aborted" + Style.RESET_ALL)
+    print(colored("[-] Aborted", 'red'))
     sys.exit()
 print()
 
@@ -36,17 +34,17 @@ try:
     End_Port = int(Raw_End_Port)
 
 except ValueError:
-    print(Fore.RED + "[-] Invalid Ports" + Style.RESET_ALL)
+    print(colored("[-] Invalid Ports", 'red'))
     sys.exit()
 
 # Checking If The Ports Are Less Than Or Equal To 65535(Total TCP Ports)
 
 if End_Port > 65535:
-    print(Fore.RED + "[-] Invalid Ports" + Style.RESET_ALL)
+    print(colored("[-] Invalid Ports", 'red'))
     sys.exit()
 
 elif Start_Port > 65535:
-    print(Fore.RED + "[-] Invalid Ports" + Style.RESET_ALL)
+    print(colored("[-] Invalid Ports", 'red'))
     sys.exit()
 
 # Starting Time For Printing Scan Time
@@ -58,33 +56,39 @@ Start_Time = time.time()
 try:
     Fixed_Target = socket.gethostbyname(Raw_Target)
 except socket.gaierror:
-    print(Fore.RED + "[-] Could Not Resolve Host" + Style.RESET_ALL)
+    print(colored("[-] Could Not Resolve Host", 'red'))
     sys.exit()
 
 # One More Banner :)
 
-print(Fore.CYAN + '[+] Starting TCP Port Scan On', Fixed_Target + Style.RESET_ALL)
+print(colored('[+] Starting TCP Port Scan On: ' + Fixed_Target, 'cyan', attrs=['bold']))
 print()
 
 # Defining Scan Port Function
 
 def scan_port(port):
-    # AF_INET And SOCK_STREAM Work For TCP
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    # Setting Timeout Because Of Lag Sometime :(
-    s.settimeout(0.5)
-    # Trying To Connect To Target
-    # If Status Is 0, It Means That The Port Is Open
-    status = s.connect_ex((Fixed_Target, port))
-    # Defining If Statement To Check If It Responded Or Not
-    if status == 0:
-        # Banner Again :)
-        print(Fore.GREEN + "[+] Port {}/tcp Is Open".format(port) + Style.RESET_ALL)
-        # Defined Open Because If There Are No Ports Open, It Wont Print Anything
-        global Open
-        Open = 1
+    try:
+    	# AF_INET And SOCK_STREAM Work For TCP
+    	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    	# Setting Timeout Because Of Lag Sometimes :(
+    	s.settimeout(0.5)
+    	# Trying To Connect To Target
+    	# If Status Is 0, It Means That The Port Is Open
+    	status = s.connect_ex((Fixed_Target, port))
+    	# Defining If Statement To Check If It Responded Or Not
+    	if status == 0:
+        	# Banner Again :)
+        	print(colored("[+] Port {}/tcp Is Open".format(port), 'green'))
+        	# Defined Open Because If There Are No Ports Open, It Wont Print Anything
+        	global Open
+        	Open = 1
     # Closing Connection
-    s.close()
+	s.close()
+
+    except KeyboardInterrupt:
+	 print()
+    	 print(colored("[-] Aborted", 'red'))
+   	 sys.exit()
 
 # Using Threading Because Only The For Statement Will Take Forever:(
 
@@ -99,22 +103,22 @@ try:
 
 except KeyboardInterrupt:
     print()
-    print(Fore.RED + "[-] Aborted" + Style.RESET_ALL)
+    print(colored("[-] Aborted", 'red'))
     sys.exit()
 
 # Timeout For Name Sake :)
-    
+
 time.sleep(1)
 
 # If No Ports Are Open
 
 if Open == 0:
-	print(Fore.RED + "[-] No Open Ports Found In Range" + Style.RESET_ALL)
+	print(colored("[-] No Open Ports Found In Range", 'red'))
 
 # Getting Scan Time
 End_Time = time.time()
 print()
-print(Fore.LIGHTWHITE_EX + "Scan Completed In:", End_Time - Start_Time, "Seconds")
+print("Scan Completed In:", End_Time - Start_Time, "Seconds")
 time.sleep(3)
 
 # Happy Hacking :)
