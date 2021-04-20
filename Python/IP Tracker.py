@@ -3,7 +3,17 @@ import json
 import socket
 import sys
 import time
+from requests import get
 
+try:
+    IP = get('https://ipapi.co/ip').text
+    print("You Public IP: " + IP)
+
+except:
+    print("[-] Error: No Internet")
+    time.sleep(5)
+    sys.exit()
+    
 try:
     Raw_Target = input("Enter Target Hostname Or IP: ")
     print()
@@ -15,7 +25,7 @@ except KeyboardInterrupt:
 try:
     Fixed_Target = socket.gethostbyname(Raw_Target)
 except socket.gaierror:
-    print("[-] Could Not Connect To Target")
+    print("[-] Error: Could Not Connect To Target")
     time.sleep(5)
     sys.exit()
 
@@ -30,7 +40,7 @@ try:
     Value = json.loads(Data)
 
 except urllib.error.URLError:
-    print("[-] Could Not Connect To Internet")
+    print("[-] Error: No Internet")
     time.sleep(5)
     sys.exit()
 
