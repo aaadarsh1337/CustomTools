@@ -11,7 +11,7 @@ except ModuleNotFoundError:
 	time.sleep(5)
 	sys.exit()
 try:
-    IP = get('http://ipapi.co/ip').text
+    IP = get('https://ipapi.co/ip').text
     if "<!DOCTYPE html>" in IP:
     	print("[-] Error: Could Not Find Your IP")
     else:
