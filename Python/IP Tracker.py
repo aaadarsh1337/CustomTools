@@ -1,13 +1,21 @@
-import urllib.request
-import json
-import socket
-import sys
-import time
-from requests import get
-
 try:
-    IP = get('https://ipapi.co/ip').text
-    print("You Public IP: " + IP)
+	import urllib.request
+	import json
+	import socket
+	import sys
+	import time
+	from requests import get
+	
+except ModuleNotFoundError:
+	print("[-] Error: Modules Not Installed. Install Them Using pip")
+	time.sleep(5)
+	sys.exit()
+try:
+    IP = get('http://ipapi.co/ip').text
+    if "<!DOCTYPE html>" in IP:
+    	print("[-] Error: Could Not Find Your IP")
+    else:
+    	print("You Public IP: " + IP)
 
 except:
     print("[-] Error: No Internet")
