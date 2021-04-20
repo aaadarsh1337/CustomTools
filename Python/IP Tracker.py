@@ -7,7 +7,7 @@ try:
 	from requests import get
 	
 except ModuleNotFoundError:
-	print("[-] Error: Modules Not Installed. Install Them Using pip")
+	print("[-] Error: Modules Not Installed. Install Them Using pip:\n\n1)urllib.request\n2)json\n3)socket\n4)sys\n5)time\n6)requests")
 	time.sleep(5)
 	sys.exit()
 try:
