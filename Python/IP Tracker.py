@@ -43,7 +43,7 @@ except KeyboardInterrupt:
 
 try:
     URL = "http://ip-api.com/json/"
-    Response = urllib.request.urlopen(URL + Fixed_Target + "?fields=query,message,continent,continentCode,country,countryCode,region,regionName,city,zip,lat,lon,isp,timezone")
+    Response = urllib.request.urlopen(URL + Fixed_Target + "?fields=query,message,continent,continentCode,country,countryCode,region,regionName,city,zip,lat,lon,isp,timezone,org")
     Data = Response.read()
     Value = json.loads(Data)
 
@@ -61,6 +61,8 @@ try:
         print("[+] Target: " + Value['query'])
     if 'message' in Value:
         print("[+] Message: " + Value['message'])
+    if 'org' in Value:
+        print("[+] Organisation: " + str(Value['org']))
     if 'continent' and 'continentCode' in Value:
         print("[+] Continent: " + Value['continent'] + "(" + Value['continentCode'] + ")")
     if 'country' and 'countryCode' in Value:
