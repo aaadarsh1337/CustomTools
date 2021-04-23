@@ -29,15 +29,15 @@ passwords = [x.strip() for x in open('passwords.txt').read().split('\n') if x]
 # Looping
 for password in passwords:
     data = {
-      'username': users,
-      'password': passwords,
+      'username': user,
+      'password': password,
       'submit': 'Connexion'
 }
 
 for user in users:
     data = {
-      'username': users,
-      'password': passwords,
+      'username': user,
+      'password': password,
       'submit': 'Connexion'
 }
 
