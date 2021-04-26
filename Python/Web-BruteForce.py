@@ -22,9 +22,9 @@ headers = {
 }
         
 # Usernames In A List Format
-users = [ x.strip() for x in open('users.txt').read().split('\n') if x ]
+users = [ x.strip() for x in open('users.txt', 'r').readlines() if x ]
 # Passwords In A List Format
-passwords = [x.strip() for x in open('passwords.txt').read().split('\n') if x]
+passwords = [x.strip() for x in open('passwords.txt', 'r').readlines() if x]
 
 # Looping
 for password in passwords:
