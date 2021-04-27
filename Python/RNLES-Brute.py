@@ -50,6 +50,9 @@ def Brute():
         print("[+] Password Found: " + password)
         pwd = "1"
         sys.exit()
+    if "firewall on this server" in response.text:
+        print("[-] Your IP Is Blocked By The Website")
+        sys.exit()
 
 try:
     thread = threading.Thread(target=Brute)
