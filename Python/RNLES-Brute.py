@@ -24,7 +24,7 @@ def Brute():
     print()
     print("[*] Started Brute Force Attack On Target")
     print("[+] Attacking")
-    passwords = [x.strip() for x in open('/home/kali/Wordlist.txt', 'r').readlines() if x]
+    passwords = [x.strip() for x in open('/usr/share/wordlists/rockyou.txt', 'r').readlines() if x]
     
     for password in passwords:
         data = {
