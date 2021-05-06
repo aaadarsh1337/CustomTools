@@ -47,7 +47,7 @@
 -Action: Allow
 -Priority: 350
 -Name: Port_1194
--Description: Empty
+-Description: No Need To Add Anything :)
 
 [*] Click On Add
 [*] Now SSH Into That VM Using PuTTY Or CMD(Using The Public IP Address Displayed)
