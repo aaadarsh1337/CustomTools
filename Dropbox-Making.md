@@ -59,11 +59,11 @@ chmod +x openvpn-install.sh
 ./openvpn-install.sh
 
 [*] Now:
-[*] Option 1) IP: It Should Automatically Print Yours. Hit Enter
-[*] Option 2) Protocol: UDP
-[*] Option 3) Port: 1194
-[*] Option 4) DNS: 1.1.1.1
-[*] Option 5) Name: dropbox
+[*] IP: It Should Automatically Print Yours. Hit Enter
+[*] Protocol: UDP
+[*] Port: 1194
+[*] DNS: 1.1.1.1
+[*] Name: dropbox
 [*] Press Any Key And Wait. 
 [*] Now Run:
 
