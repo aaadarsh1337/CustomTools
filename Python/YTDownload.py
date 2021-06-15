@@ -16,7 +16,7 @@ video = YouTube(link, on_progress_callback=on_progress)
 
 try:
     print("[+] Title: " + str(video.title))
-    print("[+] Description: " + str(video.description))
+    print("[+] Description: " + "\n" + str(video.description))
     print("[+] Length: " + str(video.length) + " Seconds")
     final_video = video.streams.get_highest_resolution()
 except KeyError:
