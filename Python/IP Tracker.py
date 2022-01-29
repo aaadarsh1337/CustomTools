@@ -23,7 +23,7 @@ except:
     sys.exit()
     
 try:
-    Raw_Target = input("Enter Target Hostname Or IPv4: ")
+    Raw_Target = input("[>] Enter Target Hostname Or IPv4: ")
     print()
 except KeyboardInterrupt:
     print("[-] Aborted")
