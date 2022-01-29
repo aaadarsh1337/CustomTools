@@ -1,4 +1,3 @@
-from ast import Index
 import dns.resolver
 import sys
 
