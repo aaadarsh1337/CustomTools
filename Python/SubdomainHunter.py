@@ -27,6 +27,9 @@ def main(subdo):
 	except KeyboardInterrupt:
 		print("\n[-] Aborted")
 		quit()
+	except:
+		print('[-] Unknown Error Occured')
+		quit()
 
 print("[+] Valid Subomains: \n")
 
