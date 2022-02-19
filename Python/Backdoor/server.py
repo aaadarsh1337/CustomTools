@@ -15,10 +15,18 @@ except KeyboardInterrupt:
     quit()
 
 while True:
-    command = input('Enter Command : ')
-    command = command.encode()
-    client.send(command)
-    print('[+] Command sent')
-    output = client.recv(1024)
-    output = output.decode()
-    print(f"[+] Output: \n\n{output}")
+    try:
+        command = input('[>] Enter Command : ')
+        if command == "quit" or command == "exit":
+            quit()
+        elif command == "":
+            continue
+        else:
+            command = command.encode()
+            client.send(command)
+            print('[+] Command sent')
+            output = client.recv(1024)
+            output = output.decode()
+            print(f"[+] Output: \n\n{output}")
+    except KeyboardInterrupt:
+        quit()
